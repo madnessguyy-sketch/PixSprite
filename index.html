@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PixSprite Pro - Animation Suite</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gifshot/0.4.5/gifshot.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/antimatter15/whammy@master/whammy.js"></script>
+</head>
+<body>
+
+    <header class="top-bar">
+        <div class="brand-zone">
+            <span class="brand-icon">🎬</span>
+            <h1 class="brand-name">PixSprite Pro</h1>
+        </div>
+        
+        <div class="control-cluster">
+            <div class="tool-group animation-controls">
+                <button id="playBtn" title="Play/Pause Animation (Spacebar)">▶ Play</button>
+                <button id="addFrameBtn" title="Add New Frame">➕ New Frame</button>
+                <button id="deleteFrameBtn" class="danger-btn" title="Delete Frame">🗑️ Delete Frame</button>
+                <button id="onionBtn" title="Toggle Onion Skin (L)">🧅 Onion Skin: Off</button>
+            </div>
+
+            <div class="divider-line"></div>
+
+            <div class="tool-group">
+                <button id="undoBtn" title="Undo (Ctrl+Z)">↶</button>
+                <button id="redoBtn" title="Redo (Ctrl+Y)">↷</button>
+                <button id="clearBtn" class="danger-btn">Clear</button>
+            </div>
+
+            <div class="divider-line"></div>
+
+            <div class="tool-group resize-group">
+                <span class="input-label">Grid:</span>
+                <input type="number" id="canvasWidth" value="32" min="8" max="128">
+                <span class="math-sign">×</span>
+                <input type="number" id="canvasHeight" value="32" min="8" max="128">
+                <button id="resizeBtn" class="action-btn">Resize</button>
+            </div>
+        </div>
+
+        <div class="tool-group export-cluster">
+            <select id="exportFormat">
+                <option value="mp4">Video (MP4/WebM)</option>
+                <option value="sheet">Sprite Sheet (PNG)</option>
+            </select>
+            <button id="saveBtn" class="export-btn">Export</button>
+        </div>
+    </header>
+
+    <div class="app-viewport">
+        <aside class="tool-sidebar">
+            <div class="sidebar-header">Tools</div>
+            <div class="tool-matrix">
+                <button id="tool-pencil" class="active" title="Pencil (B)">✏️</button>
+                <button id="tool-eraser" title="Eraser (E)">🧹</button>
+                <button id="tool-bucket" title="Bucket Fill (G)">🪣</button>
+                <button id="tool-eyedropper" title="Eyedropper (I)">🧪</button>
+                <button id="tool-rect" title="Rectangle (U)">▮</button>
+                <button id="tool-circle" title="Circle (U)">◯</button>
+            </div>
+
+            <div class="sidebar-header">Size</div>
+            <div class="size-control-block">
+                <input type="range" id="brushSize" min="1" max="5" value="1" step="1">
+                <span id="brushSizeDisplay">1px</span>
+            </div>
+
+            <div class="sidebar-header">Ink</div>
+            <div class="palette-block">
+                <div class="color-swatch-frame">
+                    <input type="color" id="colorPicker" value="#ff0000">
+                </div>
+            </div>
+        </aside>
+
+        <div class="main-workspace-stack">
+            <main class="canvas-workbench">
+                <div class="canvas-container">
+                    <canvas id="onionCanvas" width="32" height="32"></canvas>
+                    <canvas id="pixelCanvas" width="32" height="32"></canvas>
+                    <canvas id="previewCanvas" width="32" height="32"></canvas>
+                </div>
+            </main>
+
+            <div class="timeline-panel">
+                <div class="timeline-header">Frames Timeline</div>
+                <div id="frameStrip" class="frame-strip"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="status-bar">
+        <div class="status-item" id="status-coords">PixSprite Engine Active</div>
+        <div class="status-item alignment-right" id="status-dim">32 × 32 px</div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
